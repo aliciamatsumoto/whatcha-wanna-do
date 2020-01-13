@@ -18,13 +18,7 @@ def form_example():
 ##                  <h1>The category is: {}</h1>
 ##                  <h1>The max distances is: {}</h1>'''.format(date, location, category, radius)
         return render_template('index.html', lst=lst)
-    
-
-     
     return render_template('index.html')
-
-    # uncomment the line below after finishing the form-example demo
-    # return render_template('index.html')
 
 
 if __name__ == '__main__':
