@@ -18,12 +18,12 @@ def tm_api(*args):
     # do something like this...
     # argument["city"] =
     # hardcoded example:
-##    argument['city'] = 'San Francisco'
-##    argument['startDateTime'] = '2019-12-21T00:00:00Z'
-##    argument['keyword'] = 'Sports'
-##    argument['radius']  = 50
+    # argument['city'] = 'San Francisco'
+    # argument['startDateTime'] = '2019-12-21T00:00:00Z'
+    # argument['keyword'] = 'Sports'
+    # argument['radius']  = 50
 
-    print(argument)
+    print(argument)  # in console, for debugging.
 
     pages = tm_client.events.find(**argument)
 
@@ -32,13 +32,14 @@ def tm_api(*args):
         for event in page:
             # pp.pprint(event.json)
             # populate this dictionary with info from the search
-            if event.json['name'] and event.json['url'] and \
+            if event.json['name'] and event.json['url'] and \  # null checks:
                event.json['dates']['start']['dateTime'] and \
                event.json['images'][0]:
                 dct = {}
                 dct['name'] = event.json['name']
                 dct['url'] = event.json['url']
                 date_time_str = event.json['dates']['start']['dateTime']
+                # Split DateTime into date, time:
                 dct['date'] = date_time_str[:date_time_str.index('T')]
                 dct['time'] = date_time_str[date_time_str.index('T') +  1:]
                 dct['image'] = event.json['images'][0]['url']
@@ -48,10 +49,11 @@ def tm_api(*args):
             #                 ['name']
                 #print(dct)
                 dicts.append(dct)
+            # we want 10 events for the user: 
             if len(dicts) >= 10:
                 break
         break
-    #print(dicts)
+    #print(dicts) 
     return dicts
 
 
