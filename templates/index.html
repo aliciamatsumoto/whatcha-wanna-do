@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <title>Whatcha wanna do</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
+
+    <!-- <script type = "text/javascript" src = "{{ url_for('static', filename = 'layOutDay.js') }}" ></script> -->
+  </head>
+  <body>
+      <h1 id = "head"> Whatcha Wanna Do?</h1>
+      <!-- <div id = "col"> -->
+          <div id = "filter">
+                <form method="POST">
+                    <div class = "row">
+                      <div class = "cat">Date: <input type="date" name="date"><br> </div>
+                      <div class = "cat">Location: <input type="text" name="location"><br> </div>
+                    </div>
+                    <div class = "row">
+                      <div class = "cat">Radius: <input type="text" name="radius"><br></div>
+                      <div class = "cat">Categories: <input type="text" name="category"><br></div>
+
+                    </div>
+                    <div id = "centersub" >
+                        <input id= "sub" type="submit" value="Submit"><br>
+                    </div>
+                </form>
+            </div>
+            <br>
+
+            <div class="slideshow-container">
+                <form name = "act">
+                <!-- TODO fill in jinja for loop , replace ####-->
+                {% if lst %}
+                    {% for dic in lst %}
+                        <div class="mySlides fade">
+                            <input class = "star" onclick = "myFunc()" type="checkbox" value="{{dic['name']}}==={{dic['date']}}==={{dic['url']}}">
+                            <br>
+                            <br>
+                            <div class = "cboxtext">
+                                <!-- TODO add name of event below in replace of #### -->
+                                <div style="font-size:24px; width: 100%"> {{dic["name"]}} </div>
+
+                                <br>
+                                <!-- TODO add info about date/time -->
+                                <div> Date: {{dic["date"]}} Time: {{dic["time"]}}</div>
+                                <br>
+                                <!-- TODO add venue name -->
+                                
+                                <br>
+                                <!-- TODO add address -->
+
+
+                            </div>
+                            <img id = "pict" src="{{dic['image']}}" width="650px" height="400px">
+                            <p>
+                                <a href="{{dic['url']}}"> {{dic['url']}} </a>
+                            </p>
+                        </div>
+                    {% endfor%}
+                {% endif %}
+                </form>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            </div>
+                <br>
+
+                <div style="text-align:center">
+                  <span class="dot" onclick="currentSlide(1)"></span>
+                  <span class="dot" onclick="currentSlide(2)"></span>
+                  <span class="dot" onclick="currentSlide(3)"></span>
+                  <span class="dot" onclick="currentSlide(4)"></span>
+                  <span class="dot" onclick="currentSlide(5)"></span>
+                  <span class="dot" onclick="currentSlide(6)"></span>
+                  <span class="dot" onclick="currentSlide(7)"></span>
+                  <span class="dot" onclick="currentSlide(8)"></span>
+                  <span class="dot" onclick="currentSlide(9)"></span>
+                  <span class="dot" onclick="currentSlide(10)"></span>
+                </div>
+                <br>
+                <br>
+                <br>
+    <div id = "caleandar">
+
+
+    </div>
+    <!-- <input type = "button" onclick = "myFunction()" value = "Say Hello" /> -->
+    <!-- <script type="text/javascript" src="js/caleandar.js"></script> -->
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'script.js') }}" ></script>
+  </body>
+</html>
